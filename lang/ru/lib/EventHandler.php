@@ -1,0 +1,3 @@
+<?
+$MESS["MULTIREGION_SETTINGS_TAB"] = "API-выгрузка";
+?>

@@ -1,0 +1,96 @@
+#APIUnload{
+    --color-status-waiting: #FF9E00;
+    --color-status-in_progress: #FF9E00;
+    --color-status-completed: #0DC268;
+    --color-status-error: #ED0A34;
+    h2{
+        font-size: 24px;
+        margin-bottom: 24px;
+    }
+    .status-list{
+        list-style-type: none;
+        display: flex;
+        flex-direction: column;
+        row-gap: 10px;
+        padding-left: 0;
+        max-width: 600px;
+        margin-bottom: 54px;
+        li{
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            .Name{
+                white-space: nowrap;
+            }
+            .dashed{
+                width: 100%;
+                border-bottom: 1px dashed #000;
+            }
+            .status{
+                &.WAITING{
+                    color: var(--color-status-waiting);
+                }
+                &.IN_PROGRESS{
+                    color: var(--color-status-in_progress);
+                    position: relative;
+                    &::after{
+                        content: "";
+                        position: absolute;
+                        right: -25px;
+                        width: 16px;
+                        height: 16px;
+                        top: 0;
+                        background-image: url('./images/reload.svg');
+                        background-repeat: no-repeat;
+                        background-position: center;
+                        background-size: contain;
+                        animation: 1s linear 0s normal none infinite running rotation;
+                    }
+                    @keyframes rotation {
+                        0% {
+                          transform: rotate(0deg);
+                        }
+                        100% {
+                          transform: rotate(360deg);
+                        }
+                      }
+                }
+                &.COMPLETED{
+                    color: var(--color-status-completed);
+                }
+            }
+        }
+    }
+
+    .start-unload{
+        display: none;
+        width: max-content;
+        text-decoration: none;
+        outline: none;
+        padding: 8px 16px;
+        font-size: 16px;
+        background-color: var(--color-status-completed);
+        border: 1px solid var(--color-status-completed);
+        color: #fff;
+        &.active{
+            display: block;
+        }
+        &:hover{
+            transition: .3s;
+            cursor: pointer;
+            background-color: unset;
+            color: var(--color-status-completed);
+        }
+    }
+    .cant-unload{
+        display: none;
+        width: max-content;
+        border: 1px solid var(--color-status-error);
+        padding: 8px 16px;
+        color: var(--color-status-error);
+        &.active{
+            display: block;
+        }
+    }
+
+}
